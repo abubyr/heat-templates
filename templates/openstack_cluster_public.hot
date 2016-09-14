@@ -42,7 +42,7 @@ parameters:
   instance_flavor_controller:
     type: string
     description: Instance type for controllers
-    default: m1.xlarge
+    default: m1.large
     constraints:
       - allowed_values: [m1.tiny, m1.small, m1.medium, m1.large, m1.xlarge]
         description: instance_type must be a valid instance type
@@ -72,7 +72,7 @@ resources:
     properties:
       network_id: { get_param: private_net_id }
       fixed_ips:
-        - ip_address: 172.16.10.101
+        - ip_address: 172.16.10.150
       allowed_address_pairs:
         - ip_address: { get_param: cluster_vip_address }
       security_groups:
@@ -96,7 +96,7 @@ resources:
             echo "Preparing base OS"
             which wget >/dev/null || (apt-get update; apt-get install -y wget)
 
-            echo "deb [arch=amd64] http://apt.tcpcloud.eu/nightly/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
+            echo "deb [arch=amd64] http://apt.tcpcloud.eu/stable/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
             wget -O - http://apt.tcpcloud.eu/public.gpg | apt-key add -
 
             apt-get clean
@@ -143,7 +143,7 @@ resources:
             echo "Preparing base OS"
             which wget >/dev/null || (apt-get update; apt-get install -y wget)
 
-            echo "deb [arch=amd64] http://apt.tcpcloud.eu/nightly/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
+            echo "deb [arch=amd64] http://apt.tcpcloud.eu/stable/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
             wget -O - http://apt.tcpcloud.eu/public.gpg | apt-key add -
 
             apt-get clean
@@ -190,7 +190,7 @@ resources:
             echo "Preparing base OS"
             which wget >/dev/null || (apt-get update; apt-get install -y wget)
 
-            echo "deb [arch=amd64] http://apt.tcpcloud.eu/nightly/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
+            echo "deb [arch=amd64] http://apt.tcpcloud.eu/stable/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
             wget -O - http://apt.tcpcloud.eu/public.gpg | apt-key add -
 
             apt-get clean
@@ -236,7 +236,7 @@ resources:
             echo "Preparing base OS"
             which wget >/dev/null || (apt-get update; apt-get install -y wget)
 
-            echo "deb [arch=amd64] http://apt.tcpcloud.eu/nightly/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
+            echo "deb [arch=amd64] http://apt.tcpcloud.eu/stable/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
             wget -O - http://apt.tcpcloud.eu/public.gpg | apt-key add -
 
             apt-get clean
@@ -282,7 +282,7 @@ resources:
             echo "Preparing base OS"
             which wget >/dev/null || (apt-get update; apt-get install -y wget)
 
-            echo "deb [arch=amd64] http://apt.tcpcloud.eu/nightly/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
+            echo "deb [arch=amd64] http://apt.tcpcloud.eu/stable/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
             wget -O - http://apt.tcpcloud.eu/public.gpg | apt-key add -
 
             apt-get clean
@@ -336,7 +336,7 @@ resources:
             echo "Preparing base OS"
             which wget >/dev/null || (apt-get update; apt-get install -y wget)
 
-            echo "deb [arch=amd64] http://apt.tcpcloud.eu/nightly/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
+            echo "deb [arch=amd64] http://apt.tcpcloud.eu/stable/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
             wget -O - http://apt.tcpcloud.eu/public.gpg | apt-key add -
 
             apt-get clean
@@ -381,7 +381,7 @@ resources:
             echo "Preparing base OS"
             which wget >/dev/null || (apt-get update; apt-get install -y wget)
 
-            echo "deb [arch=amd64] http://apt.tcpcloud.eu/nightly/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
+            echo "deb [arch=amd64] http://apt.tcpcloud.eu/stable/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
             wget -O - http://apt.tcpcloud.eu/public.gpg | apt-key add -
 
             apt-get clean
@@ -426,7 +426,7 @@ resources:
             echo "Preparing base OS"
             which wget >/dev/null || (apt-get update; apt-get install -y wget)
 
-            echo "deb [arch=amd64] http://apt.tcpcloud.eu/nightly/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
+            echo "deb [arch=amd64] http://apt.tcpcloud.eu/stable/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
             wget -O - http://apt.tcpcloud.eu/public.gpg | apt-key add -
 
             apt-get clean

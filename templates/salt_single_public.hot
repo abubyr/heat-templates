@@ -45,7 +45,7 @@ parameters:
   private_net_pool_start:
     type: string
     description: Start of private network IP address allocation pool
-    default: 172.16.10.100
+    default: 172.16.10.50
   private_net_pool_end:
     type: string
     description: End of private network IP address allocation pool
@@ -67,6 +67,7 @@ resources:
       name: { get_param: private_net_name }
       network_id: { get_resource: private_net }
       cidr: { get_param: private_net_cidr }
+      dns_nameservers: [8.8.8.8]
       allocation_pools:
         - start: { get_param: private_net_pool_start }
           end: { get_param: private_net_pool_end }
@@ -91,6 +92,15 @@ resources:
           remote_ip_prefix: 0.0.0.0/0
         - protocol: icmp
           remote_ip_prefix: 0.0.0.0/0
+  cfg01_port:
+    type: OS::Neutron::Port
+    properties:
+      network: { get_resource: private_net }
+      fixed_ips:
+        - ip_address: 172.16.10.100
+      security_groups:
+        - default
+        - { get_resource: workshop_security_group }
   cfg01_floating_ip:
     type: OS::Nova::FloatingIP
     properties:
@@ -109,10 +119,7 @@ resources:
       name: { get_param: cfg01_name }
       availability_zone: { get_param: availability_zone }
       networks:
-      - network: { get_resource: private_net }
-      security_groups:
-      - default
-      - { get_resource: workshop_security_group }
+      - port: { get_resource: cfg01_port }
       user_data_format: RAW
       user_data:
         str_replace:
@@ -121,7 +128,7 @@ resources:
             echo "Preparing base OS"
             which wget >/dev/null || (apt-get update; apt-get install -y wget)
 
-            echo "deb [arch=amd64] http://apt.tcpcloud.eu/nightly/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
+            echo "deb [arch=amd64] http://apt.tcpcloud.eu/stable/ trusty main security extra tcp tcp-salt" > /etc/apt/sources.list
             wget -O - http://apt.tcpcloud.eu/public.gpg | apt-key add -
 
             apt-get clean
